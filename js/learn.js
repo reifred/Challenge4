@@ -264,3 +264,26 @@ function update_location(record_id){
         document.getElementById("myForm2").style.display = "none"
     }
 }
+
+//Function to update the comment of a record
+function update_comment(record_id){
+    document.getElementById("myForm").style.display = "block";
+    current_page = localStorage.getItem("page")
+    if(current_page == "red_flag.html"){
+        page_url = `https://fred-reporter.herokuapp.com/api/v1/red_flags/${record_id}/comment`
+    }else if(current_page == "intervention.html"){
+        page_url = `https://fred-reporter.herokuapp.com/api/v1/interventions/${record_id}/comment`
+    }
+    document.getElementById("update_com").onclick = function(){
+        comment_update = {"comment": document.getElementById("comment").value}
+        update_data(page_url, comment_update)
+        .then(data => {
+            if(data["data"]){
+                location = current_page
+            }
+        })
+    }
+    document.getElementById("cancel_com").onclick = function(){
+        document.getElementById("myForm").style.display = "none"
+    }
+}
