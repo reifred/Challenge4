@@ -44,3 +44,58 @@ function get_all_users(){
         }
     })
 }
+
+//Template table for available incidents
+function incident_table(redflag){
+    return `
+      <tr>
+         <td>${redflag.id}</td>
+         <td>${redflag.createdon}</td>
+         <td>${redflag.createdby}</td>
+         <td>${redflag._type}</td>
+         <td>${redflag.location}</td>
+         <td>${redflag.status}</td>
+         <td>
+          <div class="comments">
+            ${redflag.comment}
+          </div>
+        </td>
+        <td class="media"><img src="../images/bad_roads.jpg" alt="" /></td>
+        <td class="media">
+            <video height="50%" controls>
+              <source src="movie.mp4" type="video/mp4">
+            </video>
+        </td>
+      </tr>
+    `
+}
+
+//Check to know whether to go redflags or interventions page
+function record_type(button){
+    location = "records.html"
+    localStorage.setItem("button_clicked",button.name)
+}
+
+//Get all redflag/intervention records and present them in redflag template table
+function get_all_records(){
+    button_clicked = localStorage.getItem("button_clicked")    
+    if(button_clicked == "redflags"){
+        incident_url = "https://fred-reporter.herokuapp.com/api/v1/red_flags"
+    }else if(button_clicked == "intervention"){
+        incident_url = "https://fred-reporter.herokuapp.com/api/v1/interventions"
+    }
+    get_data(incident_url)
+    .then(function(data){
+        redflag_template = "";
+        if(data["data"]){
+            records = data["data"]
+            console.log(records)
+            records.forEach((record) => {
+                redflag_template += incident_table(record)
+                document.getElementById("table2").innerHTML = redflag_template
+            });
+        }else{
+            document.getElementById("table2").innerHTML = data["error"]
+        }
+    })
+}
