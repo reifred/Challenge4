@@ -80,9 +80,9 @@ function record_type(button){
 function get_all_records(){
     button_clicked = localStorage.getItem("button_clicked")    
     if(button_clicked == "redflags"){
-        incident_url = "http://127.0.0.1:5000/api/v1/red_flags"
+        incident_url = "https://fred-reporter.herokuapp.com/api/v1/red_flags"
     }else if(button_clicked == "intervention"){
-        incident_url = "http://127.0.0.1:5000/api/v1/interventions"
+        incident_url = "https://fred-reporter.herokuapp.com/api/v1/interventions"
     }
     get_data(incident_url)
     .then(function(data){
