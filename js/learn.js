@@ -99,3 +99,57 @@ function get_all_records(){
         }
     })
 }
+
+//My fuction to create a record to the server
+function post_data(url,data){
+    return fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: new Headers({
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+ localStorage.getItem("access_token")
+        })
+    })
+    .then(response => response.json())
+}
+
+//Check to know whether to add redflag or intervention record
+function create_button(button){
+    localStorage.setItem("add_record", button.value)
+}
+
+//Functionality to add an incident
+function create_record(){
+
+    location_coords = document.getElementById("lat").value + 
+    " " + document.getElementById("long").value
+
+    record = {
+        "title": document.getElementById("title").value,
+        "comment": document.getElementById("comment").value,
+        "images": ["picjava.jpg"],
+        "location": location_coords,
+        "videos": ["vidjava.mp4"]
+    }
+
+    add_record = localStorage.getItem("add_record")
+
+    if(add_record == "Red Flag"){
+        incident_url = "https://fred-reporter.herokuapp.com/api/v1/red_flags"
+        incident_page = "red_flag.html"
+    }else if(add_record == "Intervention"){
+        incident_url = "https://fred-reporter.herokuapp.com/api/v1/interventions"
+        incident_page = "intervention.html"
+    }    
+    post_data(incident_url, record)
+    .then(data => {
+        if(data["data"]){
+            document.getElementById("message").innerHTML = data["data"][0]["message"];
+            location = incident_page
+        }else{
+            document.getElementById("message").innerHTML = data["error"];
+        }
+    })
+    localStorage.removeItem("add_record")
+    return false;
+}
