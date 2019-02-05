@@ -35,3 +35,36 @@ function sign_in(){
     })
     return false;
 }
+
+//Check whether user registering is admin or normal user
+function user_type(button){
+    var is_admin = button.value
+    if(is_admin == "User"){
+        isadmin = false
+    }else if(is_admin == "Admin"){
+        isadmin = true
+    }
+}
+
+//Sign up using fetch api
+function sign_up(){
+    let sign_up_data = {
+        firstname : document.getElementById("firstName").value,
+        lastname : document.getElementById("lastName").value,
+        username : document.getElementById("userName").value,
+        phoneNumber : document.getElementById("phoNumber").value,
+        email : document.getElementById("email").value,
+        password : document.getElementById("password").value,
+        isAdmin: isadmin  
+    }
+    post_user("https://fred-reporter.herokuapp.com/api/v1/auth/sign_up", sign_up_data)
+    .then(data => {
+        if(data["data"]){
+            document.getElementById("sign_up_message").innerHTML = data["data"][0]["message"];
+            location = "sign_in.html"
+        }else if(data["error"]){
+            document.getElementById("sign_up_message").innerHTML = data["error"];
+        }
+    })
+    return false;
+}
