@@ -29,7 +29,7 @@ function user_table(user){
 
 //Get all users and present them in user template table
 function get_all_users(){
-    get_data("http://127.0.0.1:5000/api/v1/users")
+    get_data("https://fred-reporter.herokuapp.com/api/v1/users")
     .then(function(data){
         user_template = "";
         if(data["data"]){
