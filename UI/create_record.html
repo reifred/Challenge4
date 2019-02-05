@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="shortcut icon" href="../images/icon.jpg"/>
+        <title>iReporter | Forget about corruption in Africa.</title>
+</head>
+<body>
+	<div id="logged_in" class="container">
+    <div class="logo">Create Incident</div>
+    <div class="login-item">
+      <form class="form form-login" onsubmit="return create_record();">
+        <div class="form-field">
+          <input id="title" type="text" class="form-input" 
+          placeholder="Title" required>
+        </div>
+        <div class="form-field">
+          	<textarea id="comment" class="form-input" type="text" name="claim" cols="20" rows="5"
+				placeholder="Enter your claim here..." required></textarea>
+      	</div>
+        <div class="form form-login">
+          <div class="form-field" id="location" >
+            <input type="button" class="form-input" onclick="getLocation();" value="Auto Geolocation">
+            <input type="text" id="lat" class="form-input" name="Lat" placeholder="Lat: 1222" required>
+            <input type="text" id="long" class="form-input" name="Long" placeholder="Long: 1222" required>
+          </div>
+        </div>
+        <div>
+          Add an image:
+        </div>
+        <div class="form-field">
+          <input id="image" type="file" name="image" accept="image/*">
+        </div>
+        <div>
+          Add a video:
+        </div>
+        <div class="form-field">
+          <input id="image" type="file" name="video" accept="video/*">
+        </div>
+        <div id="message"></div>
+        <div class="form-field">
+          <input class="add_record" type="submit" onclick="create_button(this);" value="Red Flag">
+          <input class="add_record" type="submit" onclick="create_button(this);" value="Intervention">
+        </div>
+      </form>
+    </div>
+  </div>
+<script src="../js/main.js"></script>
+<script src="../js/learn.js"></script>
+</body>
+</html>
