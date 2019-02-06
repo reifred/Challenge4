@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="initial-scale=1.0">
+	      <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="shortcut icon" href="../images/icon.jpg"/>
+        <title>iReporter | Forget about corruption in Africa.</title>
+
+</head>
+<body>
+	<div id="not_logged_in" class="container">
+    <div class="logo">Sign In</div>
+    <div class="login-item">
+      <form class="form form-login" onsubmit="return sign_in();">
+        <div class="form-field">
+          <label class="user" for="username">Username</label>
+          <input id="username" type="text" class="form-input"
+          placeholder="username" required>
+        </div>
+
+        <div class="form-field">
+          <label class="lock" for="password">Password</label>
+          <input id="password" type="password" class="form-input"
+          placeholder="password" required>
+        </div>
+        <div class="errors" id="error_message"></div>
+        <div class="form-field">
+          <input type="submit" id="user_button" value="Log In">
+        </div>
+        <div class="form-field text--center">
+          New to iReporter<a href="sign_up.html">&nbsp;Create Account</a>
+        </div>
+      </form>
+    </div>
+</div>
+<script src="../js/auth.js"></script>
+</body>
+</html>

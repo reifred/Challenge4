@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="shortcut icon" href="../images/icon.jpg"/>
+        <title>iReporter | Forget about corruption in Africa.</title>
+</head>
+<body>
+	<div id="not_logged_in" class="container">
+    <div class="logo">Sign Up</div>
+    <div class="login-item">
+      <form class="form form-login" onsubmit="return sign_up();">
+        <div class="form-field">
+          <label class="user" for="firstName">First Name</label>
+          <input id="firstName" type="text" class="form-input"
+          placeholder="First Name" required>
+        </div>
+
+        <div class="form-field">
+          <label class="user" for="lastName">Last Name</label>
+          <input id="lastName" type="text" class="form-input"
+          placeholder="Last Name" required>
+        </div>
+
+        <div class="form-field">
+          <label class="user" for="lastName">User Name</label>
+          <input id="userName" type="text" class="form-input"
+          placeholder="User Name" required>
+        </div>
+
+        <div class="form-field">
+          <label class="user" for="phoNumber">Tel No:</label>
+          <input id="phoNumber" type="number" class="form-input"
+          placeholder="Phone Number" required>
+        </div>
+
+        <div class="form-field">
+          <label class="user" for="email">Email</label>
+          <input id="email" type="email" class="form-input" 
+          placeholder="user@email.com" required>
+        </div>
+        
+        <div class="form-field">
+          <label class="user" for="password">Password</label>
+          <input id="password" type="password" class="form-input"
+          placeholder="password" required 
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}">
+        </div>
+        <div class="errors" id="sign_up_message"></div>
+        <div class="form-field">
+          <input class="register" type="submit" onclick="user_type(this);" value="User">
+          <input class="register" type="submit" onclick="user_type(this);" value="Admin">
+        </div>
+        <div class="form-field">
+          Have an account with iReporter <a href="sign_in.html">&nbsp;Sign In</a>
+        </div>
+      </form>
+    </div>
+</div>
+<script src="../js/auth.js"></script>
+</body>
+</html>

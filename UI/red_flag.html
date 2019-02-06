@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="initial-scale=1.0">
+	    <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="shortcut icon" href="../images/icon.jpg"/>
+        <title>iReporter | Forget about corruption in Africa.</title>
+</head>
+<body onload="get_draft_records();">
+	<div id="logged_in" class="wrapper flex">
+		<section id="side_nav" class="flex_column">
+			<div class="text_center" id="user_name_top">User name</div>
+			<button class="collapsible">Profile Details</button>
+			<div class="profile_content">
+				<div id="user" class="card_header flex_column">
+					<div id="user_pic">
+						<img width="100px" height="100px;" src="../images/user.jpg">
+					</div>
+					<div id="user_details" class="text_center card_header_details">
+						<div id="username">User name</div>
+						<div id="email">user@email.com</div>
+					</div>
+				</div>
+			</div>
+			<div id="menu" class="card">
+				<div class="tab-title">Update</div>
+				<div class="tab"><a  href="red_flag.html">Red Flag</a></div>
+				<div class="tab"><a href="intervention.html">Intervention</a></div>
+				<div class="tab-title">Add</div>
+				<div class="tab"><a  href="create_record.html">Incident</a></div>
+				<div class="tab-title">Records</div>
+				<div class="tab">
+					<a onclick="record_type(this);" name="redflags" >Redflags</a>
+				</div>
+				<div class="tab">
+					<a onclick="record_type(this);" name="intervention" >Intervention</a>
+				</div>
+				<div id="logout" class="tab"><a onclick="log_out();">Log Out</a></div>
+			</div>
+		</section>
+		<section id="main" class="flex_column">
+
+
+		</section>
+		<div class="update-popup" id="myForm2">
+			<form class="form-container" onsubmit="">
+		        <div id="location">
+		        	<button type="button" onclick="getLocation();">Auto Geolocation</button>
+		        	<input type="text" id="lat" name="Lat" placeholder="Lat: 1222" required>
+		        	<input type="text" id="long"name="Long" placeholder="Long: 1222" required>
+		        </div>
+				<button id="update_loc" type="submit" class="btn">Update</button>
+				<button id="cancel_loc" type="button" class="btn cancel" >Cancel</button>
+			</form>
+		</div>
+
+		<div class="update-popup" id="myForm">
+			<form class="form-container">
+				<textarea id="comment" placeholder="Type Comment here..."></textarea>
+				<button id="update_com" type="submit" class="btn">Update</button>
+				<button id="cancel_com" type="button" class="btn cancel">Cancel</button>
+			</form>
+		</div>
+	</div>
+<script type="text/javascript">
+	username_data = localStorage.getItem("username")
+	email_data = localStorage.getItem("email")
+	localStorage.setItem("page", "red_flag.html")
+	document.getElementById("username").innerHTML = username_data;
+	document.getElementById("email").innerHTML = email_data;
+	document.getElementById("user_name_top").innerHTML = username_data
+</script>
+<script src="../js/learn.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
