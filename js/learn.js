@@ -322,6 +322,109 @@ function delete_record(record_id){
     }
 }
 
+//Admin template for draft records
+function admin_draft_incident(draft_incident){
+    user_url = `https://fred-reporter.herokuapp.com/api/v1/users/${draft_incident.createdby}`
+    let username = ""
+    get_data(user_url)
+    .then(function(data){
+        if(data["data"]){
+            username = data["data"][0]["username"]
+            localStorage.setItem("createdby", username)
+        }
+    })
+    return `
+        <div class="row card">
+            <div id="media">
+                <img width="200px" height="150px" src="../images/bad_roads.jpg">
+                <video width="50%" height="150px" controls>
+                    <source src="movie.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div id="row_details">
+                <div id="row_row_details" class="flex">
+                    <div class="right text_center">
+                        <div class="title">${draft_incident.title}</div>
+                        <div class="geo_loc">
+                            ${draft_incident.location}
+                        </div>
+                        <div class="flex text_center">
+                            <div class="right">${draft_incident._type}</div>
+                            <div class="left">${draft_incident.status}</div>
+                        </div>
+                    </div>
+                    <div class="left">
+                        <div id="details">
+                            ${draft_incident.comment}
+                        </div>
+                    </div>
+                </div>
+                <div id="row_buttons" class="text_center">
+                    <div class="dropdown left">
+                      <button class="dropbtn">Update</button>
+                      <div class="dropdown-content">
+                        <a name="resolved" 
+                        onclick="change_status(this, ${draft_incident.id}, '${draft_incident._type}');" >resolved</a>
+                        <a name="under investigation" 
+                        onclick="change_status(this, ${draft_incident.id}, '${draft_incident._type}');">under investigation</a>
+                        <a name="rejected" 
+                        onclick="change_status(this, ${draft_incident.id}, '${draft_incident._type}');">rejected</a>
+                      </div>
+                    </div>                          
+                    <div id="poster" class="right">Posted by: ${localStorage.getItem("createdby")}</div>
+                </div>
+            </div>
+        </div>
+    `
+}
+
+//Function to get all records that are in draft state
+function admin_get_draft_records(){
+    current_page = localStorage.getItem("page")
+    redflag_url = "https://fred-reporter.herokuapp.com/api/v1/red_flags"
+    intervention_url = "https://fred-reporter.herokuapp.com/api/v1/interventions"
+    user_url = ""
+    var record_first = []
+    get_data(redflag_url)
+    .then(function(data){
+        if(data["data"]){
+            record_first = data["data"]
+        }
+    })
+    get_data(intervention_url)
+    .then(function(data){
+        if(data["data"]){
+            draft_template2 = ""
+            var record_second = data["data"]
+            var draft_records = record_second.concat(record_first)
+            draft_records.forEach((record) => {
+                if(record.status == "draft"){
+                    draft_template2 += admin_draft_incident(record)
+                    document.getElementById("main").innerHTML = draft_template2
+                }
+            });
+        }else if(data["error"]){
+                    document.getElementById("main").innerHTML = draft_template2
+        }
+    })
+}
+
+//Change the status of the record
+function change_status(button, record_id, record_type){
+   if(record_type == "red-flag"){
+        page_url = `https://fred-reporter.herokuapp.com/api/v1/red_flags/${record_id}/status`
+    }else if(record_type == "intervention"){
+        page_url = `https://fred-reporter.herokuapp.com/api/v1/interventions/${record_id}/status`
+    }
+    status_update = {"status": button.name}
+    update_data(page_url, status_update)
+    .then(data => {
+        if(data["data"]){
+            location = localStorage.getItem("page")
+        }
+    })
+}
+
 //remove items from local storage
 function log_out(){
     localStorage.removeItem("access_token")
