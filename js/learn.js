@@ -1,6 +1,7 @@
 //My function to get data from server
 function get_data(url){
     return fetch(url,{
+        credentials: "same-origin",
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -292,6 +293,7 @@ function update_comment(record_id){
 //Fetch api function to delete
 function delete_data(url){
     return fetch(url, {
+        credentials: "same-origin",
         method: "DELETE",
         headers: new Headers({
             "Content-Type": "application/json",
