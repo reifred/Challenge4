@@ -321,3 +321,15 @@ function delete_record(record_id){
         });
     }
 }
+
+//remove items from local storage
+function log_out(){
+    localStorage.removeItem("access_token")
+    localStorage.removeItem("username")
+    localStorage.removeItem("email")
+    localStorage.removeItem("button_clicked")
+    localStorage.removeItem("page")
+    localStorage.removeItem("createdby")
+    location = "../index.html"
+    return false;
+}
