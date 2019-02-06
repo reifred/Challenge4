@@ -377,3 +377,34 @@ function admin_draft_incident(draft_incident){
         </div>
     `
 }
+
+function admin_get_draft_records(){
+    current_page = localStorage.getItem("page")
+    redflag_url = "https://fred-reporter.herokuapp.com/api/v1/red_flags"
+    intervention_url = "https://fred-reporter.herokuapp.com/api/v1/interventions"
+    user_url = ""
+    var record_first = []
+    get_data(redflag_url)
+    .then(function(data){
+        if(data["data"]){
+            record_first = data["data"]
+        }
+    })
+    get_data(intervention_url)
+    .then(function(data){
+        if(data["data"]){
+            draft_template2 = ""
+            var record_second = data["data"]
+            var draft_records = record_second.concat(record_first)
+            draft_records.forEach((record) => {
+                if(record.status == "draft"){
+                    draft_template2 += admin_draft_incident(record)
+                    document.getElementById("main").innerHTML = draft_template2
+                }
+            });
+        }else if(data["error"]){
+                    document.getElementById("main").innerHTML = draft_template2
+        }
+    })
+}
+
