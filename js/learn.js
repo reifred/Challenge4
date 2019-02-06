@@ -423,6 +423,7 @@ function change_status(button, record_id, record_type){
             location = localStorage.getItem("page")
         }
     })
+}
 
 //remove items from local storage
 function log_out(){
