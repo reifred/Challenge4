@@ -104,7 +104,7 @@ function get_all_records(){
 //My fuction to create a record to the server
 function post_data(url,data){
     return fetch(url, {
-        credentials: "same-origin",
+    	mode: "cors",
         method: "POST",
         body: JSON.stringify(data),
         headers: new Headers({
@@ -133,7 +133,7 @@ function create_record(){
         "location": location_coords,
         "videos": ["vidjava.mp4"]
     }
-
+    console.log(record)
     add_record = localStorage.getItem("add_record")
 
     if(add_record == "Red Flag"){
@@ -229,6 +229,7 @@ function get_draft_records(){
 //Update functionality using fetch api end point 
 function update_data(url, data){
     return fetch(url,{
+        credentials: "same-origin",
         method: "PATCH",
         body: JSON.stringify(data),
         headers: new Headers({
