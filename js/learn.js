@@ -287,3 +287,37 @@ function update_comment(record_id){
         document.getElementById("myForm").style.display = "none"
     }
 }
+
+//Fetch api function to delete
+function delete_data(url){
+    return fetch(url, {
+        method: "DELETE",
+        headers: new Headers({
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+ localStorage.getItem("access_token")
+        })
+    })
+    .then(response => response.json())
+}
+
+//Function to delete the record
+function delete_record(record_id){
+    current_page = localStorage.getItem("page")
+    if(current_page == "red_flag.html"){
+        page_url = `https://fred-reporter.herokuapp.com/api/v1/red_flags/${record_id}`
+    }else if(current_page == "intervention.html"){
+        page_url = `https://fred-reporter.herokuapp.com/api/v1/interventions/${record_id}`
+    }
+    var confirm_delete = confirm("Do you want to delete the record")
+    if(confirm_delete == true){
+        delete_data(page_url)
+        .then(function(data){
+            if(data["data"]){
+                alert(data["data"][0]["message"])
+                location = current_page
+            }else{
+                alert(data["error"])
+            }
+        });
+    }
+}
