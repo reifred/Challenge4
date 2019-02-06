@@ -103,6 +103,7 @@ function get_all_records(){
 //My fuction to create a record to the server
 function post_data(url,data){
     return fetch(url, {
+        credentials: "same-origin",
         method: "POST",
         body: JSON.stringify(data),
         headers: new Headers({
