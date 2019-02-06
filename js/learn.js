@@ -408,3 +408,17 @@ function admin_get_draft_records(){
     })
 }
 
+function change_status(button, record_id, record_type){
+   if(record_type == "red-flag"){
+        page_url = `https://fred-reporter.herokuapp.com/api/v1/red_flags/${record_id}/status`
+    }else if(record_type == "intervention"){
+        page_url = `https://fred-reporter.herokuapp.com/api/v1/interventions/${record_id}/status`
+    }
+    status_update = {"status": button.name}
+    update_data(page_url, status_update)
+    .then(data => {
+        if(data["data"]){
+            location = localStorage.getItem("page")
+        }
+    })
+}
