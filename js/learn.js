@@ -1,7 +1,6 @@
 //My function to get data from server
 function get_data(url){
     return fetch(url,{
-        credentials: "same-origin",
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -50,7 +49,7 @@ function get_all_users(){
 function incident_table(redflag){
     return `
       <tr>
-         <td>${redflag.id}</td>
+         <td>${redflag.title}</td>
          <td>${redflag.createdon}</td>
          <td>${redflag.createdby}</td>
          <td>${redflag._type}</td>
@@ -104,7 +103,6 @@ function get_all_records(){
 //My fuction to create a record to the server
 function post_data(url,data){
     return fetch(url, {
-    	mode: "cors",
         method: "POST",
         body: JSON.stringify(data),
         headers: new Headers({
@@ -229,7 +227,6 @@ function get_draft_records(){
 //Update functionality using fetch api end point 
 function update_data(url, data){
     return fetch(url,{
-        credentials: "same-origin",
         method: "PATCH",
         body: JSON.stringify(data),
         headers: new Headers({
@@ -294,7 +291,6 @@ function update_comment(record_id){
 //Fetch api function to delete
 function delete_data(url){
     return fetch(url, {
-        credentials: "same-origin",
         method: "DELETE",
         headers: new Headers({
             "Content-Type": "application/json",
