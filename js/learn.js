@@ -49,7 +49,7 @@ function get_all_users(){
 function incident_table(redflag){
     return `
       <tr>
-         <td>${redflag.id}</td>
+         <td>${redflag.title}</td>
          <td>${redflag.createdon}</td>
          <td>${redflag.createdby}</td>
          <td>${redflag._type}</td>
@@ -131,7 +131,7 @@ function create_record(){
         "location": location_coords,
         "videos": ["vidjava.mp4"]
     }
-
+    console.log(record)
     add_record = localStorage.getItem("add_record")
 
     if(add_record == "Red Flag"){
@@ -378,6 +378,7 @@ function admin_draft_incident(draft_incident){
     `
 }
 
+//Function to get all records that are in draft state
 function admin_get_draft_records(){
     current_page = localStorage.getItem("page")
     redflag_url = "https://fred-reporter.herokuapp.com/api/v1/red_flags"
@@ -408,6 +409,7 @@ function admin_get_draft_records(){
     })
 }
 
+//Change the status of the record
 function change_status(button, record_id, record_type){
    if(record_type == "red-flag"){
         page_url = `https://fred-reporter.herokuapp.com/api/v1/red_flags/${record_id}/status`
@@ -421,4 +423,15 @@ function change_status(button, record_id, record_type){
             location = localStorage.getItem("page")
         }
     })
+
+//remove items from local storage
+function log_out(){
+    localStorage.removeItem("access_token")
+    localStorage.removeItem("username")
+    localStorage.removeItem("email")
+    localStorage.removeItem("button_clicked")
+    localStorage.removeItem("page")
+    localStorage.removeItem("createdby")
+    location = "../index.html"
+    return false;
 }
