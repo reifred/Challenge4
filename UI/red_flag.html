@@ -46,9 +46,11 @@
 
 		</section>
 		<div class="update-popup" id="myForm2">
-			<form class="form-container" onsubmit="">
+			<form class="form-container">
 		        <div id="location">
-		        	<button type="button" onclick="getLocation();">Auto Geolocation</button>
+		        	<div>
+			        	<button type="button" class="btn" onclick="getLocation();">Auto Geolocation</button>
+		        	</div>
 		        	<input type="text" id="lat" name="Lat" placeholder="Lat: 1222" required>
 		        	<input type="text" id="long"name="Long" placeholder="Long: 1222" required>
 		        </div>
@@ -56,7 +58,7 @@
 				<button id="cancel_loc" type="button" class="btn cancel" >Cancel</button>
 			</form>
 		</div>
-
+		
 		<div class="update-popup" id="myForm">
 			<form class="form-container">
 				<textarea id="comment" placeholder="Type Comment here..."></textarea>
