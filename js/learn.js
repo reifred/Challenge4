@@ -39,6 +39,9 @@ function get_all_users(){
                 user_template += user_table(user)
                 document.getElementById("table").innerHTML = user_template
             });
+        }else if(data["error"] == "Your token expired"){
+            alert("Dear User, your session expired sign in again")
+            log_out()
         }else{
             document.getElementById("table").innerHTML = data["error"]
         }
@@ -94,6 +97,9 @@ function get_all_records(){
                 redflag_template += incident_table(record)
                 document.getElementById("table2").innerHTML = redflag_template
             });
+        }else if(data["error"] == "Your token expired"){
+            alert("Dear User, your session expired sign in again")
+            log_out()
         }else{
             document.getElementById("table2").innerHTML = data["error"]
         }
@@ -146,6 +152,9 @@ function create_record(){
         if(data["data"]){
             document.getElementById("message").innerHTML = data["data"][0]["message"];
             location = incident_page
+        }else if(data["error"] == "Your token expired"){
+            alert("Dear User, your session expired sign in again")
+            log_out()
         }else{
             document.getElementById("message").innerHTML = data["error"];
         }
@@ -218,6 +227,9 @@ function get_draft_records(){
                     document.getElementById("main").innerHTML = draft_template
                 }
             });
+        }else if(data["error"] == "Your token expired"){
+            alert("Dear User, your session expired sign in again")
+            log_out()
         }else{
             document.getElementById("main").innerHTML = data["error"]
         }
@@ -255,6 +267,9 @@ function update_location(record_id){
             if(data["data"]){
                 alert(data["data"][0]["message"])
                 location = current_page
+	        }else if(data["error"] == "Your token expired"){
+	            alert("Dear User, your session expired sign in again")
+	            log_out()
             }else{
                 alert(data["error"])
             }
@@ -280,7 +295,10 @@ function update_comment(record_id){
         .then(data => {
             if(data["data"]){
                 location = current_page
-            }
+	        }else if(data["error"] == "Your token expired"){
+	            alert("Dear User, your session expired sign in again")
+	            log_out()
+	        }
         })
     }
     document.getElementById("cancel_com").onclick = function(){
@@ -315,9 +333,12 @@ function delete_record(record_id){
             if(data["data"]){
                 alert(data["data"][0]["message"])
                 location = current_page
-            }else{
-                alert(data["error"])
-            }
+	        }else if(data["error"] == "Your token expired"){
+	            alert("Dear User, your session expired sign in again")
+	            log_out()
+	        }else{
+	            alert(data["error"])
+	        }
         });
     }
 }
@@ -403,6 +424,9 @@ function admin_get_draft_records(){
                     document.getElementById("main").innerHTML = draft_template2
                 }
             });
+        }else if(data["error"] == "Your token expired"){
+            alert("Dear User, your session expired sign in again")
+            log_out()
         }else if(data["error"]){
                     document.getElementById("main").innerHTML = draft_template2
         }
@@ -421,6 +445,9 @@ function change_status(button, record_id, record_type){
     .then(data => {
         if(data["data"]){
             location = localStorage.getItem("page")
+        }else if(data["error"] == "Your token expired"){
+            alert("Dear User, your session expired sign in again")
+            log_out()
         }
     })
 }
