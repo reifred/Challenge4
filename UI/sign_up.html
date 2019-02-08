@@ -13,41 +13,50 @@
     <div class="logo">Sign Up</div>
     <div class="login-item">
       <form class="form form-login" onsubmit="return sign_up();">
-        <div class="form-field">
+        <div class="form-field tooltip">
           <label class="user" for="firstName">First Name</label>
           <input id="firstName" type="text" class="form-input"
-          placeholder="First Name" required>
+          placeholder="First Name" required pattern="[A-Za-z]{3,10}">
+          <span class="tooltiptext">Firstname should be alpha characters only of length 3 to 10</span>
         </div>
 
-        <div class="form-field">
+        <div class="form-field tooltip">
           <label class="user" for="lastName">Last Name</label>
           <input id="lastName" type="text" class="form-input"
-          placeholder="Last Name" required>
+          placeholder="Last Name" required pattern="[A-z]{3,10}">
+          <span class="tooltiptext">Lastname should be alpha characters only</span>
         </div>
 
-        <div class="form-field">
+        <div class="form-field tooltip">
           <label class="user" for="lastName">User Name</label>
           <input id="userName" type="text" class="form-input"
-          placeholder="User Name" required>
+          placeholder="username" required pattern="[A-z0-9]{3,10}">
+          <span class="tooltiptext">Username sh'd be lowercase alphanumeric characters only
+          of length 3 to 10</span>
         </div>
 
-        <div class="form-field">
+        <div class="form-field tooltip">
           <label class="user" for="phoNumber">Tel No:</label>
           <input id="phoNumber" type="number" class="form-input"
           placeholder="Phone Number" required>
+          <span class="tooltiptext">Please provide a valid phone number 10-12 digits</span>
         </div>
 
-        <div class="form-field">
+        <div class="form-field tooltip">
           <label class="user" for="email">Email</label>
           <input id="email" type="email" class="form-input" 
           placeholder="user@email.com" required>
+          <span class="tooltiptext">Please provide a valid email address
+          e.g username@mail.com</span>
         </div>
         
-        <div class="form-field">
+        <div class="form-field tooltip">
           <label class="user" for="password">Password</label>
           <input id="password" type="password" class="form-input"
           placeholder="password" required 
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}">
+          <span class="tooltiptext">Password must contain lower, 
+          upper and numeric characters of length 6 to 16</span>
         </div>
         <div class="errors" id="sign_up_message"></div>
         <div class="form-field">
