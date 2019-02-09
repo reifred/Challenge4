@@ -5,8 +5,6 @@ It was developed because corruption is a huge bane to Africa's development.
 
 #### Getting Started
 
-##### Accessing the frontend of the application
-
 ## Features
 
 1. Users can create an account with iReporter.
@@ -19,10 +17,17 @@ It was developed because corruption is a huge bane to Africa's development.
 8. Users can change the geolocation (Lat Long Coordinates) attached to their red-flag or intervention records.
 9. Admin can change the status of a record to either under investigation, rejected (in the event of a false claim) or resolved (in the event that the claim has been investigated and resolved).
 
-## Front end
+## Built With
+
+#### Front end
 * HTML5
 * CSS3
 * Javascript
+
+#### Back end
+* Python 3
+* PostgreSQL
+* Flask
 
 ## Tools Used
 * Pivotal Tracker
