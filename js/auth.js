@@ -17,9 +17,10 @@ function sign_in(){
         username : document.getElementById("username").value,
         password : document.getElementById("password").value
     }
+    // post_user("http://127.0.0.1:5000/api/v1/auth/sign_in", sign_in_data)
     post_user("https://fred-reporter.herokuapp.com/api/v1/auth/sign_in", sign_in_data)
     .then(data => {
-        if(data["data"]){
+        if(data.status == 201){
             localStorage.setItem("access_token", data["data"][0]["token"]);
             localStorage.setItem("username", data["data"][0]["user"]["username"])
             localStorage.setItem("email", data["data"][0]["user"]["email"])
@@ -29,7 +30,7 @@ function sign_in(){
             }else{
                 location = "red_flag.html";
             }
-        }else if(data["error"]){
+        }else if(data.status == 400){
             document.getElementById("error_message").innerHTML = "username or password is incorrect";
         }
     })
@@ -57,12 +58,13 @@ function sign_up(){
         password : document.getElementById("password").value,
         isAdmin: isadmin  
     }
+    // post_user("http://127.0.0.1:5000/api/v1/auth/sign_up", sign_up_data)
     post_user("https://fred-reporter.herokuapp.com/api/v1/auth/sign_up", sign_up_data)
     .then(data => {
-        if(data["data"]){
+        if(data.status == 201){
             document.getElementById("sign_up_message").innerHTML = data["data"][0]["message"];
             location = "sign_in.html"
-        }else if(data["error"]){
+        }else if(data.status == 400){
             document.getElementById("sign_up_message").innerHTML = data["error"];
         }
     })

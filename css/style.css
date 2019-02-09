@@ -297,7 +297,6 @@ input {
 #media{
     display: flex;
     padding: 10px;
-    border-bottom: 1px solid #ccc;
 }
 #media img,#media video{
     width: 20px;
@@ -325,11 +324,6 @@ input {
 #row_row_details .geo_loc, 
 #row_row_details .status{
     border-bottom: 1px solid #ccc;
-}
-
-#row_buttons{
-    display: flex;
-    border-top: 1px solid #ccc;
 }
 #delete{
     background: #00B9BC;
