@@ -7,13 +7,12 @@
 	      <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="shortcut icon" href="../images/icon.jpg"/>
         <title>iReporter | Forget about corruption in Africa.</title>
-
 </head>
 <body>
 	<div id="not_logged_in" class="container">
     <div class="logo">Sign In</div>
     <div class="login-item">
-      <form class="form form-login" onsubmit="return sign_in();">
+      <form class="form form-login">
         <div class="form-field tooltip">
           <label class="user" for="username">Username</label>
           <input id="username" type="text" class="form-input"
@@ -30,11 +29,11 @@
           <span class="tooltiptext">Password must contain lower, 
           upper and numeric characters of length 6 to 16</span>
         </div>
-
         <div class="errors" id="error_message"></div>
         <div class="form-field">
-          <input type="submit" id="user_button" value="Log In">
+          <input type="button" id="user_button" onclick="sign_in();" value="Log In">
         </div>
+        <div class="loading text_center">Loading</div>
         <div class="form-field text--center">
           New to iReporter<a href="sign_up.html">&nbsp;Create Account</a>
         </div>

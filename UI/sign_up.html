@@ -12,7 +12,7 @@
 	<div id="not_logged_in" class="container">
     <div class="logo">Sign Up</div>
     <div class="login-item">
-      <form class="form form-login" onsubmit="return sign_up();">
+      <form class="form form-login">
         <div class="form-field tooltip">
           <label class="user" for="firstName">First Name</label>
           <input id="firstName" type="text" class="form-input"
@@ -60,9 +60,10 @@
         </div>
         <div class="errors" id="sign_up_message"></div>
         <div class="form-field">
-          <input class="register" type="submit" onclick="user_type(this);" value="User">
-          <input class="register" type="submit" onclick="user_type(this);" value="Admin">
+          <input class="register" type="button" onclick="sign_up(this);" value="User">
+          <input class="register" type="button" onclick="sign_up(this);" value="Admin">
         </div>
+        <div class="loading text_center">Loading</div>
         <div class="form-field">
           Have an account with iReporter <a href="sign_in.html">&nbsp;Sign In</a>
         </div>
