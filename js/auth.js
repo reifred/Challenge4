@@ -9,10 +9,14 @@ function post_user(url,data){
         })
     })
     .then(response => response.json())
+    .catch(function(){
+        alert("Connection Failed! Check your internet connection.")
+    })
 }
 
 //Sign in using fetch api
 function sign_in(){
+    document.getElementsByClassName("loading")[0].style.display = "block";
     let sign_in_data = {
         username : document.getElementById("username").value,
         password : document.getElementById("password").value
@@ -37,18 +41,14 @@ function sign_in(){
     return false;
 }
 
-//Check whether user registering is admin or normal user
-function user_type(button){
-    var is_admin = button.value
-    if(is_admin == "User"){
+//Sign up using fetch api
+function sign_up(button){
+    document.getElementsByClassName("loading")[0].style.display = "block";
+    if(button.value == "User"){
         isadmin = false
-    }else if(is_admin == "Admin"){
+    }else if(button.value == "Admin"){
         isadmin = true
     }
-}
-
-//Sign up using fetch api
-function sign_up(){
     let sign_up_data = {
         firstname : document.getElementById("firstName").value,
         lastname : document.getElementById("lastName").value,

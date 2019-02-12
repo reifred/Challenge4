@@ -12,20 +12,20 @@
 	<div id="logged_in" class="container">
     <div class="logo">Create Incident</div>
     <div class="login-item">
-      <form class="form form-login" onsubmit="return create_record();">
+      <form id="create_form" class="form form-login" enctype="multipart/form-data">
         <div class="form-field">
-          <input id="title" type="text" class="form-input" 
+          <input id="title" name="title" type="text" class="form-input" 
           placeholder="Title" required>
         </div>
         <div class="form-field">
-          	<textarea id="comment" class="form-input" type="text" name="claim" cols="20" rows="5"
+          	<textarea id="comment" class="form-input" type="text" name="comment" cols="20" rows="5"
 				placeholder="Enter your claim here..." required></textarea>
       	</div>
         <div class="form form-login">
           <div class="form-field" id="location" >
             <input type="button" class="form-input" onclick="getLocation();" value="Auto Geolocation">
-            <input type="text" id="lat" class="form-input" name="Lat" placeholder="Lat: 1222" required>
-            <input type="text" id="long" class="form-input" name="Long" placeholder="Long: 1222" required>
+            <input type="text" id="lat" class="form-input" placeholder="Lat: 1222" required>
+            <input type="text" id="long" class="form-input" placeholder="Long: 1222" required>
           </div>
         </div>
         <div>
@@ -38,12 +38,12 @@
           Add a video:
         </div>
         <div class="form-field">
-          <input id="image" type="file" name="video" accept="video/*">
+          <input id="video" type="file" name="video" accept="video/*">
         </div>
         <div id="message"></div>
         <div class="form-field">
-          <input class="add_record" type="submit" onclick="create_button(this);" value="Red Flag">
-          <input class="add_record" type="submit" onclick="create_button(this);" value="Intervention">
+          <input class="add_record" type="button" onclick="create_button(this);" value="Red Flag">
+          <input class="add_record" type="button" onclick="create_button(this);" value="Intervention">
         </div>
       </form>
     </div>

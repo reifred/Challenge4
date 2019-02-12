@@ -8,6 +8,9 @@ function get_data(url){
         }
     })
     .then(response => response.json())
+	.catch(function(){
+	    alert("Connection Failed! Check your internet connection.")
+	})
 }
 
 //Template for user table
@@ -53,6 +56,11 @@ function get_all_users(){
 
 //Template table for available incidents
 function incident_table(redflag){
+	if(redflag._type == "red-flag"){
+		image_url = "../images/no_corruption.jpg"
+	}else{
+		image_url = "../images/help_wanted.png"
+	}
     return `
       <tr>
          <td>${redflag.title}</td>
@@ -66,12 +74,7 @@ function incident_table(redflag){
             ${redflag.comment}
           </div>
         </td>
-        <td class="media"><img src="../images/bad_roads.jpg" alt="" /></td>
-        <td class="media">
-            <video height="50%" controls>
-              <source src="movie.mp4" type="video/mp4">
-            </video>
-        </td>
+        <td class="media"><img src="${image_url}" alt="" /></td>
       </tr>
     `
 }
@@ -124,16 +127,14 @@ function post_data(url,data){
         })
     })
     .then(response => response.json())
+	.catch(function(){
+	    alert("Connection Failed! Check your internet connection.")
+	})
 }
 
-//Check to know whether to add redflag or intervention record
-function create_button(button){
-    localStorage.setItem("add_record", button.value)
-}
 
 //Functionality to add an incident
-function create_record(){
-
+function create_button(button){
     location_coords = document.getElementById("lat").value + 
     " " + document.getElementById("long").value
 
@@ -144,12 +145,11 @@ function create_record(){
         "location": location_coords,
         "videos": ["vidjava.mp4"]
     }
-    add_record = localStorage.getItem("add_record")
 
-    if(add_record == "Red Flag"){
+    if(button.value == "Red Flag"){
         incident_type = "red_flags"
         incident_page = "red_flag.html"
-    }else if(add_record == "Intervention"){
+    }else if(button.value == "Intervention"){
         incident_type = "interventions"
         incident_page = "intervention.html"
     }
@@ -174,28 +174,30 @@ function create_record(){
 
 //Template for draft incidents
 function incident_draft(draft){
+	if(draft._type == "red-flag"){
+		image_url = "../images/no_corruption.jpg"
+	}else{
+		image_url = "../images/help_wanted.png"
+	}
     return `
         <div class="row card">
+            <div class="title text_center">${draft.title}</div>
             <div id="media">
-                <img width="200px" height="150px" src="../images/bad_roads.jpg">
-                <video width="50%" height="150px" controls>
-                    <source src="movie.mp4" type="video/mp4">
-                </video>
+            	<div class="left image">
+	                <img width="100%" height="150px" src="${image_url}">
+            	</div>
+                <div class="comment right">
+                	${draft.comment}
+            	</div>
             </div>
             <div id="row_details">
-                <div id="row_row_details" class="flex_column">
-                    <div class="title text_center">${draft.title}</div>
-                    <div class="text_center">
-                        <div class="geo_loc">
-                            ${draft.location}
-                        </div>
-                        <div class="flex text_center status">
-                            <div class="right">${draft._type}</div>
-                            <div class="left">${draft.status}</div>
-                        </div>
+                <div id="row_row_details" class="flex_column text_center">
+                    <div class="geo_loc">
+                        ${draft.location}
                     </div>
-                    <div>
-                        ${draft.comment}
+                    <div class="flex status">
+                        <div class="right">${draft._type}</div>
+                        <div class="left">${draft.status}</div>
                     </div>
                 </div>
                 <div id="row_buttons" class="flex text_center">
@@ -230,6 +232,9 @@ function get_draft_records(){
         draft_template = "";
         if(data.status == 200){
             records = data["data"]
+            if(records.length == 0){
+                document.getElementById("main").innerHTML = empty_records()
+            }
             records.forEach((record) => {
                 if(record.status == "draft"){
                     draft_template += incident_draft(record)
@@ -261,6 +266,9 @@ function update_data(url, data){
         })
     })
     .then(response => response.json())
+	.catch(function(){
+	    alert("Connection Failed! Check your internet connection.")
+	})
 }
 
 //Function to update the location of a record
@@ -281,7 +289,7 @@ function update_location(record_id){
         update_data(incident_url, location_update)
         .then(function(data){
             if(data.status == 200){
-                alert(data["data"][0]["message"])
+            	location = current_page
             }else if(data.status == 401){
                 alert("Dear User, your session expired sign in again")
                 log_out()
@@ -291,9 +299,6 @@ function update_location(record_id){
             }else if(data.status == 400){
                 alert(data.error)
             }
-        })
-        .catch(function(){
-            console.log("Connection failed")
         })
     }
     document.getElementById("cancel_loc").onclick = function(){
@@ -317,7 +322,7 @@ function update_comment(record_id){
         update_data(incident_url, comment_update)
         .then(data => {
             if(data.status == 200){
-                alert(data["data"])
+            	location = current_page
             }else if(data.status == 401){
                 alert("Dear User, your session expired sign in again")
                 log_out()
@@ -344,6 +349,9 @@ function delete_data(url){
         })
     })
     .then(response => response.json())
+	.catch(function(){
+	    alert("Connection Failed! Check your internet connection.")
+	})
 }
 
 //Function to delete the record
@@ -388,30 +396,32 @@ function admin_draft_incident(draft_incident){
             localStorage.setItem("createdby", username)
         }
     })
+	if(draft_incident._type == "red-flag"){
+		image_url = "../images/no_corruption.jpg"
+	}else{
+		image_url = "../images/help_wanted.png"
+	}
     return `
         <div class="row card">
-                <div id="media">
-                    <img width="200px" height="150px" src="../images/bad_roads.jpg">
-                    <video width="50%" height="150px" controls>
-                        <source src="movie.mp4" type="video/mp4">
-                    </video>
-                </div>
+	            <div class="title text_center">${draft_incident.title}</div>
+	            <div id="media">
+	            	<div class="left image">
+		                <img width="100%" height="150px" src="${image_url}">
+	            	</div>
+	                <div class="comment right">
+	                	${draft_incident.comment}
+	            	</div>
+	            </div>
                 <div id="row_details">
-                    <div id="row_row_details" class="flex_column">
-                    <div class="title text_center">${draft_incident.title}</div>
-                    <div class="right text_center">
-                        <div class="geo_loc">
-                            ${draft_incident.location}
-                        </div>
-                        <div class="flex text_center status">
-                            <div class="right">${draft_incident._type}</div>
-                            <div class="left">${draft_incident.status}</div>
-                        </div>
-                    </div>
-                    <div>
-                        ${draft_incident.comment}
-                    </div>
-                </div>
+	                <div id="row_row_details" class="flex_column text_center">
+	                    <div class="geo_loc">
+	                        ${draft_incident.location}
+	                    </div>
+	                    <div class="flex status">
+	                        <div class="right">${draft_incident._type}</div>
+	                        <div class="left">${draft_incident.status}</div>
+	                    </div>
+	                </div>
                 <div id="row_buttons" class="flex text_center">
                     <div class="dropdown left">
                         <button class="dropbtn">Update</button>
@@ -448,10 +458,13 @@ function admin_get_draft_records(){
     })
     get_data(intervention_url)
     .then(function(data){
-        if(data["data"]){
+        if(data.status == 200){
             draft_template2 = ""
-            var record_second = data["data"]
-            var draft_records = record_second.concat(record_first)
+            let record_second = data["data"]
+            let draft_records = record_second.concat(record_first)
+            if(draft_records.length == 0){
+                document.getElementById("main").innerHTML = empty_records()
+            }
             draft_records.forEach((record) => {
                 if(record.status == "draft"){
                     draft_template2 += admin_draft_incident(record)
@@ -460,11 +473,14 @@ function admin_get_draft_records(){
                     document.getElementById("main").innerHTML = empty_records()
                 }
             });
-        }else if(data["error"] == "Your token expired"){
+        }else if(data.status == 401){
             alert("Dear User, your session expired sign in again")
             log_out()
-        }else if(data["error"]){
-            document.getElementById("main").innerHTML = draft_template2
+        }else if(data.status == 403){
+            alert("Dear User, your aren't authorized to view that page")
+            log_out()
+        }else if(data.status == 400){
+            alert(data.error)
         }
     })
 }
