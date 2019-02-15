@@ -18,7 +18,7 @@ It was developed because corruption is a huge bane to Africa's development.
 9. Admin can change the status of a record to either under investigation, rejected (in the event of a false claim) or resolved (in the event that the claim has been investigated and resolved).
 
 ## Sign_in sample data for testing
-`
+```
 Admin Login: 
 username = admin
 password = Admin12
@@ -26,7 +26,7 @@ password = Admin12
 User Login:
 username = reifred
 password = Pass12
-`
+```
 
 ## Built With
 
