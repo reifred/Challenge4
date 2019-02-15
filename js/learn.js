@@ -483,11 +483,9 @@ function admin_get_draft_records(){
             draft_records.forEach((record) => {
                 if(record.status == "draft"){
                     draft_template2 += admin_draft_incident(record)
-                    document.getElementById("main").innerHTML = draft_template2
-                }else{
-                    document.getElementById("main").innerHTML = empty_records()
                 }
             })
+            document.getElementById("main").innerHTML = draft_template2
         }else if(data.status == 401){
             alert("Dear User, your session expired sign in again")
             log_out()
