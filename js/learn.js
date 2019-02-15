@@ -88,7 +88,6 @@ function record_type(button){
 //Get all redflag/intervention records and present them in redflag template table
 function get_all_records(){
     button_clicked = localStorage.getItem("button_clicked")
-    draft_n = 0; resolved_n = 0; rejected_n = 0; investigation_n = 0;  
     if(button_clicked == "redflags"){
         incident_type = "red_flags"
     }else if(button_clicked == "intervention"){
@@ -102,24 +101,9 @@ function get_all_records(){
         if(data.status == 200){
             records = data["data"]
             records.forEach((record) => {
-                if(record.status == "rejected"){
-                    rejected_n += 1
-                }else if(record.status == "resolved"){
-                    resolved_n += 1
-                }else if(record.status == "under investigation"){
-                    investigation_n += 1
-                }
-                else if(record.status == "draft"){
-                    draft_n += 1
-                }
                 redflag_template += incident_table(record)
                 document.getElementById("table2").innerHTML = redflag_template
             });
-            console.log(`Draft = ${draft_n} Investigation = ${investigation_n} Resolved = ${resolved_n}`)
-            document.getElementById("draft_num").value = draft_n
-            document.getElementById("resolved_num").value = resolved_n
-            document.getElementById("rejected_num").value = rejected_n
-            document.getElementById("investigation_num").value = investigation_n
         }else if(data.status == 401){
             alert("Dear User, your session expired sign in again")
             log_out()
@@ -254,11 +238,9 @@ function get_draft_records(){
             records.forEach((record) => {
                 if(record.status == "draft"){
                     draft_template += incident_draft(record)
-                    document.getElementById("main").innerHTML = draft_template
-                }else{
-                    document.getElementById("main").innerHTML = empty_records()
-                }
+                }                
             });
+            document.getElementById("main").innerHTML = draft_template
         }else if(data.status == 401){
             alert("Dear User, your session expired sign in again")
             log_out()
