@@ -87,7 +87,8 @@ function record_type(button){
 
 //Get all redflag/intervention records and present them in redflag template table
 function get_all_records(){
-    button_clicked = localStorage.getItem("button_clicked")    
+    button_clicked = localStorage.getItem("button_clicked")
+    draft_n = 0; resolved_n = 0; rejected_n = 0; investigation_n = 0;  
     if(button_clicked == "redflags"){
         incident_type = "red_flags"
     }else if(button_clicked == "intervention"){
@@ -101,9 +102,24 @@ function get_all_records(){
         if(data.status == 200){
             records = data["data"]
             records.forEach((record) => {
+                if(record.status == "rejected"){
+                    rejected_n += 1
+                }else if(record.status == "resolved"){
+                    resolved_n += 1
+                }else if(record.status == "under investigation"){
+                    investigation_n += 1
+                }
+                else if(record.status == "draft"){
+                    draft_n += 1
+                }
                 redflag_template += incident_table(record)
                 document.getElementById("table2").innerHTML = redflag_template
             });
+            console.log(`Draft = ${draft_n} Investigation = ${investigation_n} Resolved = ${resolved_n}`)
+            document.getElementById("draft_num").value = draft_n
+            document.getElementById("resolved_num").value = resolved_n
+            document.getElementById("rejected_num").value = rejected_n
+            document.getElementById("investigation_num").value = investigation_n
         }else if(data.status == 401){
             alert("Dear User, your session expired sign in again")
             log_out()
@@ -141,9 +157,9 @@ function create_button(button){
     record = {
         "title": document.getElementById("title").value,
         "comment": document.getElementById("comment").value,
-        "images": ["picjava.jpg"],
+        "images": ["none"],
         "location": location_coords,
-        "videos": ["vidjava.mp4"]
+        "videos": ["none"]
     }
 
     if(button.value == "Red Flag"){
@@ -386,16 +402,7 @@ function delete_record(record_id){
 
 //Admin template for draft records
 function admin_draft_incident(draft_incident){
-    let incident_url = `https://fred-reporter.herokuapp.com/api/v1/users/${draft_incident.createdby}`
-    // let incident_url = `http://127.0.0.1:5000/api/v1/users/${draft_incident.createdby}`
-    let username = ""
-    get_data(incident_url)
-    .then(function(data){
-        if(data["data"]){
-            username = data["data"][0]["username"]
-            localStorage.setItem("createdby", username)
-        }
-    })
+	createdby = get_record_username(draft_incident.createdby)
 	if(draft_incident._type == "red-flag"){
 		image_url = "../images/no_corruption.jpg"
 	}else{
@@ -434,34 +441,42 @@ function admin_draft_incident(draft_incident){
                             onclick="change_status(this, ${draft_incident.id}, '${draft_incident._type}');">rejected</a>
                         </div>
                     </div>                          
-                    <div id="poster" class="right">Posted by: ${localStorage.getItem("createdby")}</div>
+                    <div id="poster" class="right">Posted by: ${createdby}</div>
                 </div>
             </div>
         </div>
     `
 }
 
+function get_record_username(record_user_id){
+    let incident_url = `https://fred-reporter.herokuapp.com/api/v1/users/${record_user_id}`
+    // let incident_url = `http://127.0.0.1:5000/api/v1/users/${record_user_id}`
+    let username = ""
+    get_data(incident_url)
+    .then(function(data){
+        if(data.status == 200){
+            username = data["data"][0]["username"]
+            localStorage.setItem("user_record", username)
+        }
+    })
+    return localStorage.getItem("user_record")
+}
+
 //Function to get all records that are in draft state
 function admin_get_draft_records(){
     current_page = localStorage.getItem("page")
-    redflag_url = "https://fred-reporter.herokuapp.com/api/v1/red_flags"
-    intervention_url = "https://fred-reporter.herokuapp.com/api/v1/interventions"
-    // redflag_url = "http://127.0.0.1:5000/api/v1/red_flags"
-    // intervention_url = "http://127.0.0.1:5000/api/v1/interventions"
-    user_url = ""
-    var record_first = []
-    get_data(redflag_url)
+    if(current_page == "admin_redflag.html"){
+        incident_type = "red_flags"
+    }else if(current_page == "admin_intervention.html"){
+        incident_type = "interventions"
+    }
+    // let incident_url = `http://127.0.0.1:5000/api/v1/${incident_type}`
+    let incident_url = `https://fred-reporter.herokuapp.com/api/v1/${incident_type}`
+    get_data(incident_url)
     .then(function(data){
-        if(data["data"]){
-            record_first = data["data"]
-        }
-    })
-    get_data(intervention_url)
-    .then(function(data){
+        draft_template2 = ""
         if(data.status == 200){
-            draft_template2 = ""
-            let record_second = data["data"]
-            let draft_records = record_second.concat(record_first)
+        	draft_records = data["data"]
             if(draft_records.length == 0){
                 document.getElementById("main").innerHTML = empty_records()
             }
@@ -472,7 +487,7 @@ function admin_get_draft_records(){
                 }else{
                     document.getElementById("main").innerHTML = empty_records()
                 }
-            });
+            })
         }else if(data.status == 401){
             alert("Dear User, your session expired sign in again")
             log_out()

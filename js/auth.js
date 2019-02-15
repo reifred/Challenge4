@@ -30,7 +30,7 @@ function sign_in(){
             localStorage.setItem("email", data["data"][0]["user"]["email"])
             is_admin = data["data"][0]["user"]["isadmin"]
             if(is_admin == true){
-                location = "admin.html"
+                location = "admin_redflag.html"
             }else{
                 location = "red_flag.html";
             }
@@ -42,21 +42,15 @@ function sign_in(){
 }
 
 //Sign up using fetch api
-function sign_up(button){
+function sign_up(){
     document.getElementsByClassName("loading")[0].style.display = "block";
-    if(button.value == "User"){
-        isadmin = false
-    }else if(button.value == "Admin"){
-        isadmin = true
-    }
     let sign_up_data = {
         firstname : document.getElementById("firstName").value,
         lastname : document.getElementById("lastName").value,
         username : document.getElementById("userName").value,
         phoneNumber : document.getElementById("phoNumber").value,
         email : document.getElementById("email").value,
-        password : document.getElementById("password").value,
-        isAdmin: isadmin  
+        password : document.getElementById("password").value
     }
     // post_user("http://127.0.0.1:5000/api/v1/auth/sign_up", sign_up_data)
     post_user("https://fred-reporter.herokuapp.com/api/v1/auth/sign_up", sign_up_data)
