@@ -9,7 +9,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100%;
-    background-color: #0e0e0e;    
+    background-color: #0e0e0e;
     background-image: url("../images/back_ground.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -300,6 +300,7 @@ input {
     padding: 10px;
 }
 .row{
+    width: 100%;
     background: white;
     margin: 10px;
 }
@@ -598,7 +599,7 @@ div#record_details{
     }
     .row{
         margin: 2px;
-        width: auto;
+        align-self: normal;
     }
     #menu div a{
         margin: 2px; 
