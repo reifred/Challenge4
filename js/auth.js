@@ -17,6 +17,7 @@ function post_user(url,data){
 //Sign in using fetch api
 function sign_in(){
     document.getElementsByClassName("loading")[0].style.display = "block";
+    document.getElementById("error_message").style.display = "none";
     let sign_in_data = {
         username : document.getElementById("username").value,
         password : document.getElementById("password").value
@@ -24,6 +25,7 @@ function sign_in(){
     // post_user("http://127.0.0.1:5000/api/v1/auth/sign_in", sign_in_data)
     post_user("https://fred-reporter.herokuapp.com/api/v1/auth/sign_in", sign_in_data)
     .then(data => {
+        document.getElementsByClassName("loading")[0].style.display = "none";
         if(data.status == 201){
             localStorage.setItem("access_token", data["data"][0]["token"]);
             localStorage.setItem("username", data["data"][0]["user"]["username"])
@@ -55,6 +57,7 @@ function sign_up(){
     // post_user("http://127.0.0.1:5000/api/v1/auth/sign_up", sign_up_data)
     post_user("https://fred-reporter.herokuapp.com/api/v1/auth/sign_up", sign_up_data)
     .then(data => {
+        document.getElementsByClassName("loading")[0].style.display = "none";
         if(data.status == 201){
             document.getElementById("sign_up_message").innerHTML = data["data"][0]["message"];
             location = "sign_in.html"
