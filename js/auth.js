@@ -17,7 +17,6 @@ function post_user(url,data){
 //Sign in using fetch api
 function sign_in(){
     document.getElementsByClassName("loading")[0].style.display = "block";
-    document.getElementById("error_message").style.display = "none";
     let sign_in_data = {
         username : document.getElementById("username").value,
         password : document.getElementById("password").value

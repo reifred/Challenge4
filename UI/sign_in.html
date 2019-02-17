@@ -9,14 +9,14 @@
         <title>iReporter | Forget about corruption in Africa.</title>
 </head>
 <body>
-	<div id="not_logged_in" class="container">
+	<div id="not_logged_in" class="container" onsubmit="return sign_in();">
     <div class="logo">iReporter</div>
     <div class="login-item">
       <form class="form form-login">
         <div class="form-field tooltip">
           <label class="user" for="username">Username</label>
           <input id="username" type="text" class="form-input"
-          placeholder="username" required pattern="[a-z0-9]{3,15}">
+          placeholder="username" pattern="[a-z0-9]{3,15}">
           <span class="tooltiptext">Username sh'd be lowercase alphanumeric characters only
           of length 3 to 15</span>
         </div>
@@ -24,14 +24,14 @@
         <div class="form-field tooltip">
           <label class="lock" for="password">Password</label>
           <input id="password" type="password" class="form-input"
-          placeholder="password" required
+          placeholder="password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}">
           <span class="tooltiptext">Password must contain lower, 
           upper and numeric characters of length 6 to 16</span>
         </div>
         <div class="errors" id="error_message"></div>
         <div class="form-field">
-          <input type="button" id="user_button" onclick="sign_in();" value="Log In">
+          <input type="submit" id="user_button" value="Log In">
         </div>
         <div class="loading text_center">Loading</div>
         <div class="form-field text--center">
