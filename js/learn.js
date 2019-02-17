@@ -56,11 +56,14 @@ function get_all_users(){
 
 //Template table for available incidents
 function incident_table(redflag){
-	if(redflag._type == "red-flag"){
+	if(redflag._type == "red-flag" && redflag.images[0] == "none"){
 		image_url = "../images/no_corruption.jpg"
-	}else{
+	}else if(redflag._type == "intervention" && redflag.images[0] == "none"){
 		image_url = "../images/help_wanted.png"
-	}
+	}else{
+        // image_url = `http://127.0.0.1:5000/api/v1/images/${redflag.images[0]}`
+        image_url = `https://fred-reporter.herokuapp.com/api/v1/images/${redflag.images[0]}`
+    }
     return `
       <tr>
          <td>${redflag.title}</td>
@@ -137,15 +140,34 @@ function post_data(url,data){
 function create_button(button){
     location_coords = document.getElementById("lat").value + 
     " " + document.getElementById("long").value
-
+    image_file = document.getElementById("image").files[0]
+	var formData = new FormData()
+	formData.append("images", image_file)
     record = {
         "title": document.getElementById("title").value,
         "comment": document.getElementById("comment").value,
-        "images": ["none"],
         "location": location_coords,
         "videos": ["none"]
     }
 
+    if(image_file){
+    	// post_image_url = `http://127.0.0.1:5000/api/v1/images`
+    	post_image_url = `https://fred-reporter.herokuapp.com/api/v1/images`
+	    fetch(post_image_url, {
+	    	method: "POST",
+	    	body: formData
+	    })
+	    .then(response => {
+	    	if(response.status == 200){
+                document.getElementById("message_upload").innerHTML = "Image uploaded successfully"
+	    	}else{
+                document.getElementById("message_upload").innerHTML = "Image upload failed"
+            }
+        })
+        record["images"] = [image_file["name"]]
+    }else{
+    	record["images"] = ["none"]
+    }
     if(button.value == "Red Flag"){
         incident_type = "red_flags"
         incident_page = "red_flag.html"
@@ -174,11 +196,14 @@ function create_button(button){
 
 //Template for draft incidents
 function incident_draft(draft){
-	if(draft._type == "red-flag"){
+	if(draft._type == "red-flag" && draft.images[0] == "none"){
 		image_url = "../images/no_corruption.jpg"
-	}else{
+	}else if(draft._type == "intervention" && draft.images[0] == "none"){
 		image_url = "../images/help_wanted.png"
-	}
+	}else{
+        // image_url = `http://127.0.0.1:5000/api/v1/images/${draft.images[0]}`
+        image_url = `https://fred-reporter.herokuapp.com/api/v1/images/${draft.images[0]}`
+    }
     return `
         <div class="row card">
             <div class="title text_center">${draft.title}</div>
@@ -367,7 +392,6 @@ function delete_record(record_id){
         delete_data(incident_url)
         .then(function(data){
             if(data.status == 200){
-                alert(data["data"][0]["message"])
                 location.reload()
             }else if(data.status == 401){
                 alert("Dear User, your session expired sign in again")
@@ -385,11 +409,14 @@ function delete_record(record_id){
 //Admin template for draft records
 function admin_draft_incident(draft_incident){
 	createdby = get_record_username(draft_incident.createdby)
-	if(draft_incident._type == "red-flag"){
+	if(draft_incident._type == "red-flag" && draft_incident.images[0] == "none"){
 		image_url = "../images/no_corruption.jpg"
-	}else{
+	}else if(draft_incident._type == "intervention" && draft_incident.images[0] == "none"){
 		image_url = "../images/help_wanted.png"
-	}
+	}else{
+        // image_url = `http://127.0.0.1:5000/api/v1/images/${draft_incident.images[0]}`
+        image_url = `https://fred-reporter.herokuapp.com/api/v1/images/${draft_incident.images[0]}`
+    }
     return `
         <div class="row card">
 	            <div class="title text_center">${draft_incident.title}</div>
