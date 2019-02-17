@@ -561,6 +561,11 @@ div#record_details{
       width: 100%;
       padding: 5px;
     }
+    #logged_in input.add_record{
+      width: 100%;
+      margin: 5px;
+    }
+
 }
 
 @media screen and (max-width: 580px){
@@ -646,12 +651,12 @@ div#record_details{
     font-weight: bold;
   }
 
-#not_logged_in .form-login input[type="number"],
-#not_logged_in .form-login input[type="email"],
-#not_logged_in .form-login input[type="text"],
-#not_logged_in .form-login input[type="password"] {
-  border-radius: 0.25rem;
-}
+  #not_logged_in .form-login input[type="number"],
+  #not_logged_in .form-login input[type="email"],
+  #not_logged_in .form-login input[type="text"],
+  #not_logged_in .form-login input[type="password"] {
+    border-radius: 0.25rem;
+  }
     .wrapper{
         width: auto;
     }
