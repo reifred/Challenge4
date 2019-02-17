@@ -175,10 +175,12 @@ function create_button(button){
         incident_type = "interventions"
         incident_page = "intervention.html"
     }
+    document.getElementsByClassName("loading")[0].style.display = "block";
     // let incident_url = `http://127.0.0.1:5000/api/v1/${incident_type}`
     let incident_url = `https://fred-reporter.herokuapp.com/api/v1/${incident_type}`
     post_data(incident_url, record)
     .then(data => {
+        document.getElementsByClassName("loading")[0].style.display = "none";
         if(data.status == 201){
             location = incident_page
         }else if(data.status == 401){
