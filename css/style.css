@@ -1,0 +1,215 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+#wrapper{
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+.user_link, .admin_link{
+  display: none;
+}
+
+#user_link_comment, 
+#user_link_image, 
+#user_link_location, 
+#user_link_delete,
+#admin_link_update,
+div.record_buttons input[type="submit"]{
+  display: none;
+}
+
+ul.sidenav{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+  height: 100%;
+  position: fixed;
+  width: 30vw;
+  z-index: 5;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0 5px 0;
+}
+ul.sidenav li a{
+  display: block;
+  color: #000;
+  text-decoration: none;
+  padding: 8px 10px;
+  width: auto;
+  cursor: pointer;
+}
+ul.sidenav li a:hover{
+  background-color: #555;
+  color: white;
+}
+ul.sidenav li.active a{
+  background-color: #4CAF50;
+  color: white;
+}
+ul.sidenav li.title{
+  padding: 10px;
+  color: #555;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+main.content{
+  margin-left: 30vw;
+  height: 100vh;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+}
+
+main.content div.cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+  margin: 5px;
+}
+main.content div.cards div.card{
+  border-radius: 4px;
+  padding: .5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+main.content div.cards div.profile{
+  height: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+main.content div.cards div.card:hover{
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+div.page_title_card{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+    color: #555;
+    font-size: 1.2rem;
+  }
+div.page_title_card div.page_statistics{
+  margin-left: auto;
+}
+
+div.card img{
+  width: 70px;
+  height: 70px;
+}
+div.record, div.user{
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+
+}
+div.record p.record_description{
+    margin: 0;
+    height: 90px;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+div.single_record p.record_description{
+    margin: 0;
+    padding: 0;
+}
+div.single_record div.comment_buttons{
+  display: flex;
+}
+div.single_record div.comment_buttons input.user_link{
+  flex: 1;
+}
+div.record div.record_title{
+  color: #555;
+}
+
+div.profile table{
+  color: #4CAF50
+}
+
+div.profile .profile_details_title{
+  color: #555;
+}
+
+div.record div.record_status{
+  text-align: right;
+  text-decoration: underline;
+  margin-top: auto;
+}
+div.single_record{
+  background-color: #fff;
+  word-wrap: break-word;
+  word-break: break-word;
+  width: 70vw;
+}
+#record_template div.card{
+  background-color: #fff;
+  width: auto;
+}
+.modal{
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: none;
+}
+main.modal-content form{
+  background-color: white;
+}
+main.modal-content div.cards{
+    grid-template-columns: minmax(auto, 1fr);
+}
+
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: green;
+    color: #fff;
+    padding: 16px;
+    position: fixed;
+    z-index: 20;
+    left: 30vw;
+    bottom: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);    
+}
+ 
+#toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {bottom: 80%; opacity: 0;}
+    to {bottom: 80%; opacity: 1;}
+}
+ 
+@keyframes fadeout {
+    from {bottom: 80%; opacity: 1;}
+    to {bottom: 80%; opacity: 0;}
+}
+
+.error::placeholder{
+  color: red;
+}
+
+@media screen and (max-width: 400px){
+  #wrapper{
+    font-size: 15px;
+  }
+  ul.sidenav li.title{
+    font-size: 20px;
+  }
+}
+
+div#norecord, div#loading_data {
+    width: 70vw;
+}

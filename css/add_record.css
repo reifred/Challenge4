@@ -1,0 +1,64 @@
+*{
+	box-sizing: border-box;
+}
+form{
+	display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 0 5px;
+}
+form .fieldset{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 0 5px 0;
+	border: none;
+	margin: 5px;
+}
+form div.map{
+	display: flex;
+	flex-direction: column;
+}
+form div.map input[type="submit"]{
+	margin-top: auto;
+}
+div.form-field input[type='text'], div.form-field textarea{
+    border-radius: 0.2rem;
+    padding: 0.5rem;  
+    width: 100%;  	
+}
+input[type="submit"], input[type="button"]{
+	border: none;
+	width: 100%;
+	border-radius: 5px;
+	background-color: #4CAF50;
+	margin: 5px 0;
+	padding: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	color: #fff;
+}
+input[type="submit"]:hover, input[type="button"]:hover{
+	border: 1px solid #4CAF50;
+    background-color: #fff;
+    color: #4CAF50;
+}
+div.form-field select{
+	width: 100%;
+}
+form.fieldset .form-title{
+	color: #555;
+}
+.modal{
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #cccccca1;
+}
+@media screen and (max-width: 400px){
+    main.content{
+        overflow-x: hidden;
+    }
+}
