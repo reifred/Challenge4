@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iReporter | Forget about corruption in Africa.</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/add_record.css">
+</head>
+<body>
+	<div id="wrapper">
+		<nav>
+			<ul class="sidenav">
+				<li class="title">iReporter</li>
+				<li><a href="profile.html">Profile</a></li>
+				<li id="user_link" class="active"><a href="add_record.html">Add Record</a></li>
+				<li><a href="redflag.html">Redflags</a></li>
+				<li><a href="intervention.html">Interventions</a></li>
+				<li class="admin_link"><a href="users.html">Users</a></li>
+				<li><a onclick="log_out();">Logout</a></li>
+			</ul>
+		</nav>
+		<main class="content">
+			<form>
+				<div class="fieldset">
+					<div class="form-field">
+						<div class="form-title">
+						<label for="title">Title</label>
+						</div>
+						<input type="text" id="title" name="title" placeholder="Title" required>
+					</div>
+					<div class="form-field">
+						<div class="form-title">
+						<label for="incident_type">Incident Type</label>
+						</div>
+						<select id="incident_type">
+							<option value="red_flags">Red flag</option>
+							<option value="interventions">Intervention</option>
+						</select>
+					</div>
+					<div class="form-field">
+						<div class="form-title">
+						<label for="comment">Comment</label>
+						</div>
+						<textarea rows="5" id="comment" name="comment" required placeholder="Enter comment here..."></textarea>
+					</div>
+					<div class="form-field">
+						<div class="form-title">
+						<label for="image">Add image:</label>
+						</div>
+						<input id="image" type="file" name="image" accept="image/*">						
+					</div>
+					<div class="form-field">
+						<div class="form-title">
+						<label for="video">Add video:</label>
+						</div>
+						<input id="video" type="file" name="video" accept="video/*">						
+					</div>
+				</div>
+				<div class="fieldset map">
+					<div class="form-field">
+						<input type="button" id="geolocation" onclick="getLocation()" value="Current Location">
+						<div id="location"></div>
+					</div>
+					<div class="form-title">Location from map.</div>
+					<input type="button" onclick="add_record();" name="" value="Add Record">
+				</div>
+			</form>
+		</main>
+	</div>
+   <div id="toast">My toast message</div>
+<script src="../js/templates.js"></script>
+<script src="../js/create.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+html{
+   height: 100%;
+}
+body{
+    overflow-x: hidden;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, Verdana, sans-serif;
+    min-height: 100%;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{
+    height: auto;
+}
+
+/*Start page*/
+.start_page{
+	  color: white;
+	  height: 90vh;
+    width: 90vw;
+    background: #13090996;
+}
+#get_started{
+  	position: relative;
+  	top: 10px;
+  	width: 100px;
+   	margin: auto;
+  	padding: 10px;
+  	background: #00B9BC;
+  	border-radius: 5px;
+}
+main{
+  margin-top: 100px;
+}
+#get_started:hover {
+    background: #197071;
+}
+#get_started a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.start_page_header{
+    font-weight: bolder;
+}
+.start_page_main{
+    font-weight: bold;
+}
+
+/*form sign up, sign in, add records*/
+
+.logo{
+  padding: 10px;
+  color: #555;
+  text-align: center;
+  font-size: 2rem;
+  width: 80vw;
+}
+
+.login-item {
+  color: #555;
+  border-radius: 3px;
+  width: 80vw;
+}
+
+.form input[type="button"],.form-login input[type="email"],
+.form input[type="number"],.form input[type="password"],
+.form input[type="text"], .form input[type="submit"]{
+    width: 75vw;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    color: #3A3F44;
+    margin-bottom: 1rem;
+}
+
+.form-login input[type="submit"], .form-login input[type="button"] {
+    width: 78vw;
+    background-color: #4CAF50;
+    color: #eee;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.form-login input[type="submit"]:hover,
+.form-login input[type="button"]:hover{
+  border: 1px solid #4CAF50;
+  color: #4CAF50;
+  background-color: #eee;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.error::placeholder{
+  color: red;
+}
+
+.form-field a{
+  text-decoration: none;
+  color: #4CAF50;
+}
+.form-field a:hover{
+  text-decoration: underline;
+}
+
+.register{
+  margin: 0 2px;
+}
+
+/* The alert message box */
+.alert {
+  display: none;
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+  width: 75vw;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+/*Loaders*/
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#loading_page{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  width: 100%;
+  height: 80%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

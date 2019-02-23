@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="../css/auth.css">
+      <link rel="shortcut icon" href="../images/icon.jpg"/>
+      <title>iReporter | Forget about corruption in Africa.</title>
+</head>
+<body>
+	<div id="not_logged_in" class="container">
+    <div class="logo">iReporter</div>
+  
+  <div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+      <div id="error_message"></div>
+  </div>
+
+    <div class="login-item">
+      <form class="form form-login" onsubmit="return sign_up();">
+        <div class="form-field">
+          <input id="firstName" type="text" class="form-input"
+          oninvalid="this.setCustomValidity('First Name should be 3 to 15 characters')"
+          onchange="this.setCustomValidity('')"
+          placeholder="First Name" required pattern="[A-Za-z]{3,15}">
+        </div>
+
+        <div class="form-field">
+          <input id="lastName" type="text" class="form-input"
+          oninvalid="this.setCustomValidity('Last Name should be 3 to 15 characters')"
+          onchange="this.setCustomValidity('')"
+          placeholder="Last Name" required pattern="[A-z]{3,15}">
+        </div>
+
+        <div class="form-field">
+          <input id="userName" type="text" class="form-input"
+          oninvalid="this.setCustomValidity('username should be 3 to 15 alphanumeric characters')"
+          onchange="this.setCustomValidity('')"
+          placeholder="username" required pattern="[A-z0-9]{3,15}">
+        </div>
+
+        <div class="form-field">
+          <input id="phoNumber" type="number" class="form-input"
+          oninvalid="this.setCustomValidity('Phone number should be 10 to 12 numeric characters')"
+          onchange="this.setCustomValidity('')"
+          placeholder="Phone Number" required pattern="[0-9]{10,12}">
+        </div>
+
+        <div class="form-field">
+          <input id="email" type="email" class="form-input"
+          placeholder="user@email.com" required>
+        </div>
+        
+        <div class="form-field">
+          <input id="password" type="password" class="form-input"
+          oninvalid="this.setCustomValidity('Password must have one upper and lower case letter plus number of length 6 to 16')"
+          onchange="this.setCustomValidity('')"
+          placeholder="password" required 
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}">
+        </div>
+
+        <div class="form-field">
+          <input id="confirm_password" type="password" class="form-input"
+          placeholder="confirm password" required
+          oninvalid="this.setCustomValidity('Password must have one upper and lower case letter plus number of length 6 to 16')"
+          onchange="this.setCustomValidity('')"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}">
+        </div>
+        <div class="form-field">
+          <input class="register" type="submit" value="Register">
+        </div>
+        <div class="form-field">
+          Have an account with iReporter <a href="sign_in.html">&nbsp;Sign In</a>
+        </div>
+      </form>
+    </div>
+</div>
+<div id="loading_page">
+    <img src="../images/loading.gif">
+</div>
+<script src="../js/auth.js"></script>
+</body>
+</html>

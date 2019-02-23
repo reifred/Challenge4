@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iReporter | Forget about corruption in Africa.</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+	<div id="wrapper">
+		<nav>
+			<ul class="sidenav">
+				<li class="title">iReporter</li>
+				<li><a href="profile.html">Profile</a></li>
+				<li class="user_link"><a href="add_record.html">Add Record</a></li>
+				<li class="active"><a href="redflag.html">Redflags</a></li>
+				<li><a href="intervention.html">Interventions</a></li>
+				<li class="admin_link"><a href="users.html">Users</a></li>
+				<li><a onclick="log_out();">Logout</a></li>
+			</ul>
+		</nav>
+		<main class="content">
+			<div class="page_title_card">
+				<div class="page_title">Redflags</div>
+				<div class="page_statistics">43</div>
+			</div>
+			<div class="cards" id="record_template">
+
+					<div id="loading_data">
+					    <img width="100%" src="../images/get_data.gif">
+					</div>
+
+			</div>
+		</main>
+	</div>
+
+   <div id="toast"></div>
+
+
+	<div id="mymodal" class="modal">
+		<main class="content modal-content">
+			<form>
+				<div class="cards">
+					<div id="modal_template">
+					
+					<div id="loading_data">
+					    <img width="100%" src="../images/get_data.gif">
+					</div>
+
+					</div>
+				</div>
+			</form>
+		</main>		
+	</div>
+<script src="../js/templates.js"></script>
+<script src="../js/record.js"></script>
+<script src="../js/update.js"></script>
+</body>
+</html>
