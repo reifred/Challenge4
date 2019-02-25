@@ -151,6 +151,15 @@ div.single_record{
   background-color: #fff;
   width: auto;
 }
+
+div.record_buttons {
+  display: flex;
+}
+.record_buttons input[type="button"] {
+  flex: 1;
+  padding: 5px;
+  margin: 0 5px;
+}
 .modal{
     position: fixed;
     z-index: 10;
@@ -167,7 +176,9 @@ main.modal-content form{
 main.modal-content div.cards{
     grid-template-columns: minmax(auto, 1fr);
 }
-
+main.modal-content div.cards div.card{
+  box-shadow: none;
+}
 #toast {
     visibility: hidden;
     min-width: 250px;

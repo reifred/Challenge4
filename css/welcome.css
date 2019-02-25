@@ -1,42 +1,82 @@
+*{
+    box-sizing: border-box;
+}
 body{
 	padding: 0;
 	margin: 0;
-	background-color: #0e0e0e;	
-	background-image: url("../images/back_ground.jpg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+	background-color: #f1f1f1;	
     font-family: Arial, Helvetica, Verdana, sans-serif;
- }
-.start_page main{
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	padding: 10px;
+}
+div#page_title{
+    color: #555;
+    text-align: left;
+    font-size: 50px;
+    padding: 10px;
+}
+main{
+    background-color: #4CAF50;
+    width: 100vw;
+    height: 40%;
+}
+main div#main_title{
+    color: white;
+    font-weight: bolder;
     text-align: center;
-    border-radius: 3px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+    font-size: 30px;
+    padding: 20px;
 }
-div.start_page h1.start_page_header{
-	text-align: center;
-	color: #fff;
-	font-size: 1.5rem;
+main div#main_subtitle{
+    color: white;
+    text-align: center;
+    font-size: 20px;
 }
-div.start_page p{
-	font-weight: bold;
+div.cards{
+    display: flex;
+}
+div.card{
+    border-radius: 4px;
+    padding: .5rem;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    color: #555;
+    margin: 10px;
+    height: auto;
+    text-align: center;
+    flex: 1;
+}
+main div#get_started{
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+div#get_started a{
+    padding: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    background: #f1f1f1;
+    color: #555;
+    border-radius: 5px;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 5px;
+}
+div#get_started a:hover{
+    background: #555;
     color: #f1f1f1;
 }
-#get_started {
-    position: relative;
-    top: 10px;
-    width: 100px;
-    margin: 5px auto;
-    padding: 10px;
-    background: #4CAF50;
-    border-radius: 5px;
+div#main_footer{
+    color: #555;
     text-align: center;
+    font-size: 30px;
+    padding: 10px;
 }
-#get_started a{
-	color: white;
-	text-decoration: none;
+div.card_title{
+    font-weight: bold;
+}
+div.card_content{
+    text-align: left;
+}
+@media screen and (max-width: 600px){
+    div.cards{
+        flex-direction: column;
+    }
 }
