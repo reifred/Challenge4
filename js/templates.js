@@ -17,7 +17,7 @@ for(let link = 0; link < user_links.length; link++){
 }
 
 function edit_record(record_status){
-	map_access(-74.50, 40)
+	map_access()
 	if(is_admin == "true"){
 		document.getElementById("admin_link_update").style.display = "block"
 	}else if(is_admin == "false" && record_status == "draft"){
