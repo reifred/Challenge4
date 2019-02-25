@@ -129,7 +129,7 @@ function modal_table(record_data){
     <div class="card">
         <div class="single_record">
             <div class="record_title"><b>Location</b></div>
-            <p class="record_description">${record_data.location}</p>
+            <p id="current_loc" class="record_description">${record_data.location}</p>
         </div>
     </div>
     <div class="card">
@@ -157,10 +157,11 @@ function modal_table(record_data){
     <div class="card" id="user_link_location">
         <div class="single_record">
             <div class="form-field">
-                <input type="button" onclick="getLocation();" name="geolocation" value="Current Location">
-                <div id="location">${record_data.location}</div>
+                <div style="text-align: center" id="location"></div>
             </div>
-            <div class="form-title">Location from map.</div>
+            <div id="map" style="width: 65vw; height: 200px;">
+
+            </div>
             <div class="record_page_buttons">
                 <input type="button" onclick="update_location(${record_data.id})" value="Update Location">
             </div>        
