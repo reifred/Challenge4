@@ -9,44 +9,9 @@ body{
     background-color: #f1f1f1;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 .wrapper{
     height: auto;
-}
-
-/*Start page*/
-.start_page{
-	  color: white;
-	  height: 90vh;
-    width: 90vw;
-    background: #13090996;
-}
-#get_started{
-  	position: relative;
-  	top: 10px;
-  	width: 100px;
-   	margin: auto;
-  	padding: 10px;
-  	background: #00B9BC;
-  	border-radius: 5px;
-}
-main{
-  margin-top: 100px;
-}
-#get_started:hover {
-    background: #197071;
-}
-#get_started a{
-  text-decoration: none;
-  color: inherit;
-}
-
-.start_page_header{
-    font-weight: bolder;
-}
-.start_page_main{
-    font-weight: bold;
 }
 
 /*form sign up, sign in, add records*/
@@ -60,6 +25,7 @@ main{
 }
 
 .login-item {
+  margin-top: 20px;
   color: #555;
   border-radius: 3px;
   width: 80vw;
