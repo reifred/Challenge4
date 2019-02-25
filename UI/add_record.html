@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iReporter | Forget about corruption in Africa.</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/add_record.css">
+	<link rel="stylesheet" type="text/css" href="../css/add_record.css">
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
 	<div id="wrapper">
@@ -59,10 +61,12 @@
 				</div>
 				<div class="fieldset map">
 					<div class="form-field">
-						<input type="button" id="geolocation" onclick="getLocation()" value="Current Location">
-						<div id="location"></div>
+						<div style="text-align: center" id="location"></div>
 					</div>
-					<div class="form-title">Location from map.</div>
+					<div class="form-title">Pick Location from map.</div>
+					<div id="map" style="width: 65vw; height: 200px;">
+
+					</div>
 					<input type="button" onclick="add_record();" name="" value="Add Record">
 				</div>
 			</form>
@@ -71,5 +75,6 @@
    <div id="toast">My toast message</div>
 <script src="../js/templates.js"></script>
 <script src="../js/create.js"></script>
+<script src="../js/map.js"></script>
 </body>
 </html>

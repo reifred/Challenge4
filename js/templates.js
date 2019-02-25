@@ -16,21 +16,8 @@ for(let link = 0; link < user_links.length; link++){
 	}
 }
 
-function getLocation(){
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(showPosition);
-  }else{
-    alert("Failed to get location use map cordinates")
-  }
-}
-
-function showPosition(position){
-	Lat_cordinates = "Lat: " + position.coords.latitude;
-	Long_cordinates = "Long: " + position.coords.longitude;
-	document.getElementById("location").innerHTML = `${Lat_cordinates} ${Long_cordinates}`
-}
-
 function edit_record(record_status){
+	map_access(-74.50, 40)
 	if(is_admin == "true"){
 		document.getElementById("admin_link_update").style.display = "block"
 	}else if(is_admin == "false" && record_status == "draft"){
