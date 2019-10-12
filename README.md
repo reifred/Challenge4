@@ -45,8 +45,5 @@ password = Pass12
 * Sublime Text Editor
 * Github
 
-## Demo
-The link to the ***Gh-Pages*** demostrating the application can be found [here](https://reifred.github.io/Challenge4/)
-
   ### Authors
 Mugerwa Fred
